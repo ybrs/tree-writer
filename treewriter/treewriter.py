@@ -29,15 +29,15 @@ class TreeDraw(object):
         from blessings import Terminal
         term = Terminal()
 
-        for x in range(1,120):
-            for y in range(1, 10):
+        for x in range(0,120):
+            for y in range(0, 10):
                 with term.location(x=x, y=y):
                     print " "
 
         for line, nodes in self.lines.iteritems():
             for node in nodes:
                 with term.location(y=line + 1, x=node.x+10):
-                    print term.bold + "|%s " % node.name
+                    print term.bold + "|%s|" % node.name
 
         with term.location(y=line+3, x=0):
             print ">>> max width:", max(self.widths.values())
