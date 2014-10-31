@@ -29,7 +29,7 @@ class TreeDraw(object):
         from blessings import Terminal
         term = Terminal()
 
-        for x in range(1,50):
+        for x in range(1,120):
             for y in range(1, 10):
                 with term.location(x=x, y=y):
                     print " "
@@ -37,7 +37,7 @@ class TreeDraw(object):
         for line, nodes in self.lines.iteritems():
             for node in nodes:
                 with term.location(y=line + 1, x=node.x+10):
-                    print term.bold + "|%s|" % node.name
+                    print term.bold + "|%s " % node.name
 
         with term.location(y=line+3, x=0):
             print ">>> max width:", max(self.widths.values())
@@ -95,14 +95,15 @@ if __name__ == "__main__":
     e = Node('e')
     z = Node('z')
     c.add_children(d, e, z)
-    z.add_children(Node('8'), Node('9'))
+    z.add_children(Node('F'), Node('I'))
 
     one = Node(1)
     two = Node(2)
-    h.add_children(one, two)
+    h.add_children(one, two, Node("T"))
     two.add_children(Node("3"), Node("4"), Node("R"))
-    one.add_children(Node("8"), Node(9))
-
+    nine = Node(9)
+    one.add_children(Node("8"), nine, Node("U"))
+    nine.add_children(Node("7"), Node("G"))
 
     td = TreeDraw(root)
     td.calc_max_width()
